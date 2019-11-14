@@ -1,0 +1,9 @@
+services:
+  emulsify_ext.twig.emulsify_ext_bem:
+    class: Drupal\emulsify_ext\BemTwigExtension
+    tags:
+      - { name: twig.extension }
+  emulsify_ext.twig.emulsify_ext_add_attributes:
+    class: Drupal\emulsify_ext\AddAttributesTwigExtension
+    tags:
+      - { name: twig.extension }
