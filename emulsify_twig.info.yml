@@ -1,0 +1,6 @@
+name: Emulsify Twig Extensions Module
+type: module
+description: BEM and Add Attributes Twig Extensions for Drupal
+core: 8.x
+version: 1.0
+package: Emulsify

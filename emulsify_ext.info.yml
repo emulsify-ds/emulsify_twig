@@ -1,5 +1,0 @@
-name: 'Emulsify Extension Module'
-type: module
-description: 'Helper extension for Emulsify theme'
-core: 8.x
-package: 'Emulsify'

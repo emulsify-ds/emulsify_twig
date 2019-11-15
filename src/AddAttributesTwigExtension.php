@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\emulsify_ext;
+namespace Drupal\emulsify_twig;
 use Drupal\Core\Template\Attribute;
 
 /**
@@ -14,7 +14,7 @@ class AddAttributesTwigExtension extends \Twig_Extension {
    * This function must return the name of the extension. It must be unique.
    */
   public function getName() {
-    return 'emulsify_ext_add_attributes';
+    return 'emulsify_twig_add_attributes';
   }
 
   /**
