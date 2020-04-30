@@ -5,7 +5,7 @@ use Drupal\Core\Template\Attribute;
 
 /**
  * Class DefaultService
- * 
+ *
  * @package Drupal\EmulsifyExt
  */
 class BemTwigExtension extends \Twig_Extension {
@@ -22,7 +22,7 @@ class BemTwigExtension extends \Twig_Extension {
    */
   public function getFunctions() {
     return array(
-      new \Twig_SimpleFunction('bem', array($this, 'bem'), array('needs_context' => true), array('is_safe' => array('html'))),
+      new \Twig_SimpleFunction('bem', array($this, 'bem'), array('needs_context' => true, 'is_safe' => array('html'))),
     );
   }
 
