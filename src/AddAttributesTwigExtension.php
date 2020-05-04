@@ -5,7 +5,7 @@ use Drupal\Core\Template\Attribute;
 
 /**
  * Class DefaultService
- * 
+ *
  * @package Drupal\EmulsifyExt
  */
 class AddAttributesTwigExtension extends \Twig_Extension {
@@ -22,7 +22,7 @@ class AddAttributesTwigExtension extends \Twig_Extension {
    */
   public function getFunctions() {
     return array(
-      new \Twig_SimpleFunction('add_attributes', array($this, 'add_attributes'), array('needs_context' => true), array('is_safe' => array('html'))),
+      new \Twig_SimpleFunction('add_attributes', array($this, 'add_attributes'), array('needs_context' => true, 'is_safe' => array('html'))),
     );
   }
 
@@ -73,7 +73,7 @@ class AddAttributesTwigExtension extends \Twig_Extension {
       // elements.
       $context['attributes']->removeAttribute($key);
     }
-    
+
     return $attributes;
   }
 }
