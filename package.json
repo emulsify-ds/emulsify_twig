@@ -1,0 +1,16 @@
+{
+  "name": "emulsify_twig",
+  "version": "0.0.0",
+  "description": "Emuslify Twig Extensions for Drupal 8+ theming",
+  "main": "index.js",
+  "engines": {
+    "node": ">=12"
+  },
+  "repository": "git@github.com:emulsify-ds/emulsify_twig.git",
+  "author": "techninja <james@tn42.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "semantic-release": "^17.0.8"
+  }
+}
