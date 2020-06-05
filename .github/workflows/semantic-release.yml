@@ -2,8 +2,7 @@ name: Semantic Release on Merge
 on:
   push:
     branches:
-      - '*'
-      - '!master'
+      - 'master'
 jobs:
   release:
     name: Attempt Semantic Release
@@ -15,15 +14,17 @@ jobs:
       id: semantic
       uses: cycjimmy/semantic-release-action@v2
       env:
-        GITHUB_TOKEN: ${{ secrets.BENDER_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: 'Add remote SSH Key'
+    - uses: shimataro/ssh-key-action@v2
       with:
-        dry_run: true
-    - name: Do something when a new release published
+        key: ${{ secrets.DRUPAL_ORG_SSH_KEY }}
+        config: ${{ secrets.SSH_CONFIG }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - name: Sync repo to Drupal.org
+      with:
+        drupal_repo: ${{ secrets.DRUPAL_REPO_URL }}
       if: steps.semantic.outputs.new_release_published == 'true'
       run: |
-        echo "New Release ready to publish!"
-        echo "Full: ${{ steps.semantic.outputs.new_release_version }}"
-        echo "Major: ${{ steps.semantic.outputs.new_release_major_version }}"
-        echo "Minor: ${{ steps.semantic.outputs.new_release_minor_version }}"
-        echo "Revision: ${{ steps.semantic.outputs.new_release_patch_version }}"
-      
+        git remote add drupal-org $drupal_repo
+        git push drupal-org --tags
