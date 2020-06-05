@@ -74,3 +74,26 @@ Can also be used with the BEM Function:
 } %}
 
 <div {{ add_attributes(additional_attributes) }}></div>
+```
+
+## Development
+
+-------------
+
+### Requires
+
+- [Node.js v12+](http://nodejs.org/)
+- [Yarn Package Manager](https://yarnpkg.com/)
+- [Commitizen](https://github.com/commitizen/cz-cli) for commit standardization, included in install
+
+### Initial Setup
+
+1. Run `yarn` to install dependencies. You're done!
+
+### Committing Changes
+
+To facilitate automatic semantic release versioning, we utilize the [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog) standard through Commitizen. Follow these steps when commiting your work to ensure a better tomorrow.
+
+1. Stage your changes, ensuring they encompass exactly what you wish to change, no more.
+2. Run `yarn commit` and follow the prompts to craft the perfect commit message.
+3. _Rejoice!_ For now your commit message will be used to create the changelog for the next version that includes that commit.
