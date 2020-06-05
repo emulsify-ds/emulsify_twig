@@ -10,6 +10,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Extract branch name
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
@@ -23,5 +25,4 @@ jobs:
     - name: Sync dev branch to Drupal.org Project
       run: |
         git remote add drupal-org '${{ secrets.DRUPAL_REPO_URL }}'
-        git fetch --all
         git push drupal-org ${{ steps.extract_branch.outputs.branch }}
