@@ -23,4 +23,4 @@ jobs:
     - name: Sync dev branch to Drupal.org Project
       run: |
         git remote add drupal-org '${{ secrets.DRUPAL_REPO_URL }}'
-        git push drupal-org ${{ steps.extract_branch.outputs.branch }}
+        git push drupal-org ${{ steps.extract_branch.outputs.branch }} --force
