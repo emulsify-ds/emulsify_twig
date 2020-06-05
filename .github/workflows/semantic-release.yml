@@ -21,8 +21,10 @@ jobs:
         key: ${{ secrets.DRUPAL_ORG_SSH_KEY }}
         config: ${{ secrets.SSH_CONFIG }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
-    - name: Sync repo to Drupal.org
+    - name: Sync release tags to Drupal.org Project
       if: steps.semantic.outputs.new_release_published == 'true'
       run: |
         git remote add drupal-org '${{ secrets.DRUPAL_REPO_URL }}'
         git push drupal-org --tags
+        git checkout master
+        git push drupal-org master
