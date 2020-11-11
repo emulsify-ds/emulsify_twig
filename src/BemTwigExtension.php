@@ -63,7 +63,9 @@ class BemTwigExtension extends \Twig_Extension {
         // Set blockname--modifier classes for each modifier.
         if (!empty($modifiers)) {
           foreach ($modifiers as $modifier) {
-            $classes[] = $blockname . '__' . $base_class . '--' . $modifier;
+            if (!empty($modifier)) {
+              $classes[] = $blockname . '__' . $base_class . '--' . $modifier;
+            }
           };
         }
       }
@@ -74,14 +76,18 @@ class BemTwigExtension extends \Twig_Extension {
         // Set base--modifier class for each modifier.
         if (!empty($modifiers)) {
           foreach ($modifiers as $modifier) {
-            $classes[] = $base_class . '--' . $modifier;
+            if (!empty($modifier)) {
+              $classes[] = $base_class . '--' . $modifier;
+            }
           };
         }
       }
       // If extra non-BEM classes are added.
       if (!empty($extra)) {
         foreach ($extra as $extra_class) {
-          $classes[] = $extra_class;
+          if (!empty($extra)) {
+            $classes[] = $extra_class;
+          }
         };
       }
       if (class_exists('Drupal')) {
