@@ -63,7 +63,7 @@ class BemTwigExtension extends \Twig_Extension {
         // Set blockname--modifier classes for each modifier.
         if (!empty($modifiers)) {
           foreach ($modifiers as $modifier) {
-            if (!empty($modifier)) {
+            if (isset($modifier)) {
               $classes[] = $blockname . '__' . $base_class . '--' . $modifier;
             }
           };
@@ -76,7 +76,7 @@ class BemTwigExtension extends \Twig_Extension {
         // Set base--modifier class for each modifier.
         if (!empty($modifiers)) {
           foreach ($modifiers as $modifier) {
-            if (!empty($modifier)) {
+            if (isset($modifier)) {
               $classes[] = $base_class . '--' . $modifier;
             }
           };
