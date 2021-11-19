@@ -50,11 +50,8 @@ class AddAttributesTwigExtension extends \Twig_Extension {
           if ($value instanceof Attribute) {
             $value = $value->toArray()[$key];
           }
-          elseif (is_string($value)) {
-            $value = [$value];
-          }
           else {
-            continue;
+            $value = [$value];
           }
         }
         // Merge additional attribute values with existing ones.
