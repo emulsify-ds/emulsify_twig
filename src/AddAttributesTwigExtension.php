@@ -51,7 +51,13 @@ class AddAttributesTwigExtension extends \Twig_Extension {
             $value = $value->toArray()[$key];
           }
           else {
-            $value = [$value];
+            switch (gettype($value)) {
+              case 'integer':
+              case 'boolean':
+              case 'string':
+                $value = [strval($value)];
+                break;
+            }
           }
         }
         // Merge additional attribute values with existing ones.
