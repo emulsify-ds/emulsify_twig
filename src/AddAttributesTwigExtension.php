@@ -35,30 +35,35 @@ class AddAttributesTwigExtension extends \Twig_Extension {
 
     if (!empty($additional_attributes)) {
       foreach ($additional_attributes as $key => $value) {
-        if (is_array($value)) {
-          foreach ($value as $index => $item) {
+
+        switch (gettype($value)) {
+          case 'array':
+            foreach ($value as $index => $item) {
+              // Handle bem() output.
+              if ($item instanceof Attribute) {
+                // Remove the item.
+                unset($value[$index]);
+                $value = array_merge($value, $item->toArray()[$key]);
+              }
+            }
+            break;
+
+          case 'integer':
+          case 'boolean':
+          case 'string':
             // Handle bem() output.
-            if ($item instanceof Attribute) {
-              // Remove the item.
-              unset($value[$index]);
-              $value = array_merge($value, $item->toArray()[$key]);
+            if ($value instanceof Attribute) {
+              $value = $value->toArray()[$key];
             }
-          }
-        }
-        else {
-          // Handle bem() output.
-          if ($value instanceof Attribute) {
-            $value = $value->toArray()[$key];
-          }
-          else {
-            switch (gettype($value)) {
-              case 'integer':
-              case 'boolean':
-              case 'string':
-                $value = [strval($value)];
-                break;
+            else {
+              $value = [strval($value)];
             }
-          }
+            break;
+
+          default:
+            // Set value to an empty string.
+            $value = '';
+            break;
         }
         // Merge additional attribute values with existing ones.
         if ($context['attributes']->offsetExists($key)) {
