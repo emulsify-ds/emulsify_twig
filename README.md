@@ -4,6 +4,8 @@ This module provides two Twig extensions used in the [Emulsify Design System](ht
 
 ## Usage
 
+---
+
 ### BEM Twig Extension
 
 Twig function that inserts static classes into Pattern Lab and adds them to the Attributes object in Drupal
@@ -101,3 +103,30 @@ To facilitate automatic semantic release versioning, we utilize the [Conventiona
 1. Stage your changes, ensuring they encompass exactly what you wish to change, no more.
 2. Run `yarn commit` and follow the prompts to craft the perfect commit message.
 3. _Rejoice!_ For now your commit message will be used to create the changelog for the next version that includes that commit.
+
+## Release
+
+---
+
+There's a two-step process to publish a new release to [the project page](https://www.drupal.org/project/emulsify_twig) on Drupal.org.
+
+1. Cut a release on GitHub
+2. Select the generated tag for the release on Drupal.org, and set it as the "recommended" release.
+
+### Creating a release on GitHub
+
+- Once one or more PRs are merged into the development branch (currently `2.x`), [create a "Release" PR](https://github.com/emulsify-ds/emulsify_twig/compare/master...2.x) to merge the latest from that branch into `master`.
+- As soon as that PR is merged, a [GitHub action](https://github.com/emulsify-ds/emulsify_twig/actions) will kick off to cut a release based on the commit messages in that release.
+  - _Note: This workflow will also push the new tag to drupal.org so that you can select it in the next section._
+- When that is finished, you should see the new release listed on the [Releases page](https://github.com/emulsify-ds/emulsify_twig/releases) for the repository.
+
+### Publishing the release to Drupal.org
+
+- Go to the [Releases tab for the Emulsify Twig project](https://www.drupal.org/node/3094752/edit/releases) on drupal.org. (You'll need to be a maintainer to access this page.)
+- Click "Add new release"
+- Select the tag for the latest release and click Next
+- Copy the release notes from the GitHub releases page, and reformat them according to the wysiwyg options
+- Select the appropriate release type(s) (Bug fixes/New features).
+- Click Save
+- Back on the Releases tab, select the new release as the "Supported" and "Recommended" release. Deselect any others.
+- Save, and go to the projects main page to verify that the new release is displayed in the green box so that future builds will pull it by default.
