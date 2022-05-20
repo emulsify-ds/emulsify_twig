@@ -9,6 +9,7 @@ This module provides two Twig extensions used in the [Emulsify Design System](ht
 Twig function that inserts static classes into Pattern Lab and adds them to the Attributes object in Drupal
 
 #### Simple block name (required argument):
+
 `<h1 {{ bem('title') }}>`
 
 This creates:
@@ -16,6 +17,7 @@ This creates:
 `<h1 class="title">`
 
 #### Block with modifiers (optional array allowing multiple modifiers):
+
 `<h1 {{ bem('title', ['small', 'red']) }}>`
 
 This creates:
@@ -23,6 +25,7 @@ This creates:
 `<h1 class="title title--small title--red">`
 
 #### Element with modifiers and blockname (optional):
+
 `<h1 {{ bem('title', ['small', 'red'], 'card') }}>`
 
 This creates:
@@ -68,6 +71,7 @@ Twig function that merges with template level attributes in Drupal and prevents 
 ```
 
 Can also be used with the BEM Function:
+
 ```
 {% set additional_attributes = {
   "class": bem("foo", ["bar", "baz"], "foobar"),
@@ -78,7 +82,7 @@ Can also be used with the BEM Function:
 
 ## Development
 
--------------
+---
 
 ### Requires
 
