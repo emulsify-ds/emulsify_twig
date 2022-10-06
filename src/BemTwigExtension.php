@@ -106,7 +106,11 @@ class BemTwigExtension extends \Twig_Extension {
           }
           // Remove the attribute from context so it doesn't trickle down to
           // includes.
-          $context['attributes']->removeAttribute($key);
+          // Do not remove data-uuid attribute as it will break layout
+          // paragraphs builder.
+          if (!$context['attributes']->hasAttribute('data-uuid')) {
+            $context['attributes']->removeAttribute($key);
+          }
         }
         // Add class attribute.
         if (!empty($classes)) {
