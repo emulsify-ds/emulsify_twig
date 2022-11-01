@@ -94,7 +94,7 @@ Can also be used with the BEM Function:
 
 ### Initial Setup
 
-1. Run `yarn` to install dependencies. You're done!
+1. Run `npm install` to install dependencies. You're done!
 
 ### Committing Changes
 
