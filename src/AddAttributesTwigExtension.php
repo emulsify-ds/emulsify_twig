@@ -1,28 +1,23 @@
 <?php
 
 namespace Drupal\emulsify_twig;
+
 use Drupal\Core\Template\Attribute;
+use Drupal\Core\Template\TwigExtension;
+use Twig\TwigFunction;
 
 /**
  * Class DefaultService
  *
  * @package Drupal\EmulsifyExt
  */
-class AddAttributesTwigExtension extends \Twig_Extension {
-  /**
-   * {@inheritdoc}
-   * This function must return the name of the extension. It must be unique.
-   */
-  public function getName() {
-    return 'emulsify_twig_add_attributes';
-  }
-
+class AddAttributesTwigExtension extends TwigExtension {
   /**
    * In this function we can declare the extension function.
    */
   public function getFunctions() {
     return array(
-      new \Twig_SimpleFunction('add_attributes', array($this, 'add_attributes'), array('needs_context' => true, 'is_safe' => array('html'))),
+      new TwigFunction('add_attributes', array($this, 'add_attributes'), array('needs_context' => true, 'is_safe' => array('html'))),
     );
   }
 

@@ -1,35 +1,41 @@
 <?php
 
 namespace Drupal\emulsify_twig;
+
 use Drupal\Core\Template\Attribute;
+use Drupal\Core\Template\TwigExtension;
+use Twig\TwigFunction;
 
 /**
  * Class DefaultService
  *
  * @package Drupal\EmulsifyExt
  */
-class BemTwigExtension extends \Twig_Extension {
+class BemTwigExtension extends TwigExtension {
   /**
    * {@inheritdoc}
    * This function must return the name of the extension. It must be unique.
    */
-  public function getName() {
+  public function getName()
+  {
     return 'emulsify_twig_bem';
   }
 
   /**
    * In this function we can declare the extension function.
    */
-  public function getFunctions() {
+  public function getFunctions()
+  {
     return array(
-      new \Twig_SimpleFunction('bem', array($this, 'bem'), array('needs_context' => true, 'is_safe' => array('html'))),
+      new TwigFunction('bem', array($this, 'bem'), array('needs_context' => true, 'is_safe' => array('html'))),
     );
   }
 
   /*
    * This function is used to set classes/attributes based on the passed options
    */
-  public function bem($context, $base_class, $modifiers = array(), $blockname = '', $extra = array()) {
+  public function bem($context, $base_class, $modifiers = array(), $blockname = '', $extra = array())
+  {
     $classes = [];
 
     // Add the ability to pass an object as the one and only argument.
@@ -46,8 +52,7 @@ class BemTwigExtension extends \Twig_Extension {
           $$arg_key = $object->$object_key;
         }
       }
-    }
-    else {
+    } else {
       // Ensure array arguments.
       if (!is_array($modifiers)) {
         $modifiers = [$modifiers];
@@ -95,7 +100,7 @@ class BemTwigExtension extends \Twig_Extension {
         // Checking the attributes from the context.
         if (!empty($context['attributes'])) {
           // Iterate the attributes available in context.
-          foreach($context['attributes'] as $key => $value) {
+          foreach ($context['attributes'] as $key => $value) {
             // If there are classes, add them to the classes array.
             if ($key === 'class') {
               foreach ($value as $class) {
