@@ -3,39 +3,42 @@
 namespace Drupal\emulsify_twig;
 
 use Drupal\Core\Template\Attribute;
-use Drupal\Core\Template\TwigExtension;
+use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 /**
- * Class DefaultService
+ * Class DefaultService.
  *
  * @package Drupal\EmulsifyExt
  */
-class BemTwigExtension extends TwigExtension {
+class BemTwigExtension extends AbstractExtension {
+
   /**
    * {@inheritdoc}
+   *
    * This function must return the name of the extension. It must be unique.
    */
-  public function getName()
-  {
+  public function getName() {
     return 'emulsify_twig_bem';
   }
 
   /**
    * In this function we can declare the extension function.
    */
-  public function getFunctions()
-  {
-    return array(
-      new TwigFunction('bem', array($this, 'bem'), array('needs_context' => true, 'is_safe' => array('html'))),
-    );
+  public function getFunctions() {
+    return [
+      new TwigFunction(
+        'bem',
+        [$this, 'bem'],
+        ['needs_context' => TRUE, 'is_safe' => ['html']]
+      ),
+    ];
   }
 
-  /*
-   * This function is used to set classes/attributes based on the passed options
+  /**
+   * Used to set classes/attributes based on the passed options.
    */
-  public function bem($context, $base_class, $modifiers = array(), $blockname = '', $extra = array())
-  {
+  public function bem($context, $base_class, $modifiers = [], $blockname = '', $extra = []) {
     $classes = [];
 
     // Add the ability to pass an object as the one and only argument.
@@ -52,7 +55,8 @@ class BemTwigExtension extends TwigExtension {
           $$arg_key = $object->$object_key;
         }
       }
-    } else {
+    }
+    else {
       // Ensure array arguments.
       if (!is_array($modifiers)) {
         $modifiers = [$modifiers];
@@ -124,4 +128,5 @@ class BemTwigExtension extends TwigExtension {
       }
     }
   }
+
 }
