@@ -115,7 +115,7 @@ There's a two-step process to publish a new release to [the project page](https:
 
 ### Creating a release on GitHub
 
-- Once one or more PRs are merged into the development branch (currently `2.x`), [create a "Release" PR](https://github.com/emulsify-ds/emulsify_twig/compare/master...2.x) to merge the latest from that branch into `master`.
+- Once one or more PRs are merged into the development branch, [create a "Release" PR](https://github.com/emulsify-ds/emulsify_twig/compare/main...feature-branch) to merge the latest from that branch into `main`.
 - As soon as that PR is merged, a [GitHub action](https://github.com/emulsify-ds/emulsify_twig/actions) will kick off to cut a release based on the commit messages in that release.
   - _Note: This workflow will also push the new tag to drupal.org so that you can select it in the next section._
 - When that is finished, you should see the new release listed on the [Releases page](https://github.com/emulsify-ds/emulsify_twig/releases) for the repository.
