@@ -1,36 +1,35 @@
 <?php
 
 namespace Drupal\emulsify_twig;
+
 use Drupal\Core\Template\Attribute;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
- * Class DefaultService
+ * Class DefaultService.
  *
  * @package Drupal\EmulsifyExt
  */
-class AddAttributesTwigExtension extends \Twig_Extension {
-  /**
-   * {@inheritdoc}
-   * This function must return the name of the extension. It must be unique.
-   */
-  public function getName() {
-    return 'emulsify_twig_add_attributes';
-  }
+class AddAttributesTwigExtension extends AbstractExtension {
 
   /**
    * In this function we can declare the extension function.
    */
   public function getFunctions() {
-    return array(
-      new \Twig_SimpleFunction('add_attributes', array($this, 'add_attributes'), array('needs_context' => true, 'is_safe' => array('html'))),
-    );
+    return [
+      new TwigFunction(
+        'add_attributes',
+        [$this, 'addAttributes'],
+        ['needs_context' => TRUE, 'is_safe' => ['html']]
+      ),
+    ];
   }
 
-  /*
-   * This function is used to return alt of an image
-   * Set image title as alt.
+  /**
+   * This function is used to return alt of an image. Set image title as alt.
    */
-  public function add_attributes($context, $additional_attributes = []) {
+  public function addAttributes($context, $additional_attributes = []) {
     $attributes = new Attribute();
 
     if (!empty($additional_attributes)) {
@@ -81,7 +80,7 @@ class AddAttributesTwigExtension extends \Twig_Extension {
     }
 
     // Set all attributes.
-    foreach($context['attributes'] as $key => $value) {
+    foreach ($context['attributes'] as $key => $value) {
       $attributes->setAttribute($key, $value);
       // Remove this attribute from context so it doesn't filter down to child
       // elements.
@@ -90,4 +89,5 @@ class AddAttributesTwigExtension extends \Twig_Extension {
 
     return $attributes;
   }
+
 }

@@ -1,16 +1,21 @@
 <?php
 
 namespace Drupal\emulsify_twig;
+
 use Drupal\Core\Template\Attribute;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
- * Class DefaultService
+ * Class DefaultService.
  *
  * @package Drupal\EmulsifyExt
  */
-class BemTwigExtension extends \Twig_Extension {
+class BemTwigExtension extends AbstractExtension {
+
   /**
    * {@inheritdoc}
+   *
    * This function must return the name of the extension. It must be unique.
    */
   public function getName() {
@@ -21,15 +26,19 @@ class BemTwigExtension extends \Twig_Extension {
    * In this function we can declare the extension function.
    */
   public function getFunctions() {
-    return array(
-      new \Twig_SimpleFunction('bem', array($this, 'bem'), array('needs_context' => true, 'is_safe' => array('html'))),
-    );
+    return [
+      new TwigFunction(
+        'bem',
+        [$this, 'bem'],
+        ['needs_context' => TRUE, 'is_safe' => ['html']]
+      ),
+    ];
   }
 
-  /*
-   * This function is used to set classes/attributes based on the passed options
+  /**
+   * Used to set classes/attributes based on the passed options.
    */
-  public function bem($context, $base_class, $modifiers = array(), $blockname = '', $extra = array()) {
+  public function bem($context, $base_class, $modifiers = [], $blockname = '', $extra = []) {
     $classes = [];
 
     // Add the ability to pass an object as the one and only argument.
@@ -95,7 +104,7 @@ class BemTwigExtension extends \Twig_Extension {
         // Checking the attributes from the context.
         if (!empty($context['attributes'])) {
           // Iterate the attributes available in context.
-          foreach($context['attributes'] as $key => $value) {
+          foreach ($context['attributes'] as $key => $value) {
             // If there are classes, add them to the classes array.
             if ($key === 'class') {
               foreach ($value as $class) {
@@ -119,4 +128,5 @@ class BemTwigExtension extends \Twig_Extension {
       }
     }
   }
+
 }
