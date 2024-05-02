@@ -1,3 +1,7 @@
+# Emulsify Twig Replaced with Emulsify Tools
+
+Note: This repository contains the last supported version of Emulsify Twig that will work with Drupal 10 and 11 only. Support for Drupal 9 has been dropped. The replacement for this module is [Emulsify Tools](https://github.com/emulsify-ds/emulsify_tools) where development will continue.
+
 # Emulsify Twig Extensions module
 
 This module provides two Twig extensions used in the [Emulsify Design System](https://github.com/emulsify-ds/).
