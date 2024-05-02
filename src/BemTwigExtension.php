@@ -101,6 +101,13 @@ class BemTwigExtension extends AbstractExtension {
       }
       if (class_exists('Drupal')) {
         $attributes = new Attribute();
+
+        // If context attributes doesn't exist or is an array, create new Attribute.
+        $context['attributes'] = $context['attributes'] ?? new Attribute();
+        if (is_array($context['attributes'])) {
+          $context['attributes'] = new Attribute($context['attributes']);
+        }
+
         // Checking the attributes from the context.
         if (!empty($context['attributes'])) {
           // Iterate the attributes available in context.
